@@ -31,7 +31,7 @@
 - (void)appendNumber:(double)number {
     if (! self.isDecimalPart) {
         self.value *= 10;
-        if (self.value > 0) {
+        if (self.value >= 0) {
             self.value += number;
         } else {
             self.value -= number;
@@ -54,7 +54,10 @@
 }
 - (void)deleteValue {
     self.value = 0;
+    self.buffer = 0;
     self.inAction = NO;
+    self.decimalPart = NO;
+    self.lastPow = 0;
 }
 - (void)changeSign {
     self.value *= -1;
@@ -117,6 +120,7 @@
     self.lastAction = 5;
     self.decimalPart = NO;
     self.buffer = self.value;
+    self.value = 0;
     self.inAction = NO;
     self.lastPow = 0;
 }
